@@ -308,19 +308,33 @@ body {
 .ob-dot.active { background: #2563eb; width: 22px; border-radius: 4px; }
 .ob-next-btn { width: 100%; }
 
-/* ── Settings Panel ── */
-.settings-panel { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500; display: flex; align-items: flex-end; }
-.settings-panel.hidden { display: none !important; }
-.settings-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 20px 12px; border-bottom: 1px solid var(--settings-border); }
-.settings-title { font-size: 1.1rem; font-weight: 800; color: var(--text-heading); }
-.settings-close { background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text-muted); }
-.settings-body { background: var(--settings-bg); border-radius: 28px 28px 0 0; width: 100%; max-width: 480px; margin: 0 auto; padding-bottom: 32px; }
-.settings-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--settings-border); }
+/* ── Settings Panel (full slide-in drawer) ── */
+.settings-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500; display: flex; justify-content: flex-end; }
+.settings-overlay.hidden { display: none !important; }
+.settings-drawer { width: 88%; max-width: 360px; height: 100%; background: var(--settings-bg); display: flex; flex-direction: column; animation: slideInRight 0.3s ease; overflow: hidden; }
+@keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+.settings-header { display: flex; justify-content: space-between; align-items: center; padding: 56px 20px 16px; background: var(--header-bg); color: white; flex-shrink: 0; }
+.settings-title { font-size: 1.2rem; font-weight: 800; color: white; }
+.settings-close { background: rgba(255,255,255,0.2); border: none; color: white; font-size: 1rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.settings-scroll { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+
+.settings-profile-card { display: flex; align-items: center; gap: 14px; background: var(--card-bg); border-radius: 18px; padding: 16px; border: 1px solid var(--card-border); margin-bottom: 10px; }
+.settings-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg,#2563eb,#3b82f6); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+.settings-profile-info { flex: 1; }
+.settings-profile-name { font-size: 1rem; font-weight: 700; color: var(--text-heading); }
+.settings-profile-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+.settings-edit-btn { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; border-radius: 10px; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; font-family: inherit; cursor: pointer; }
+
+.settings-section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); padding: 8px 4px 4px; }
+.settings-group { background: var(--card-bg); border-radius: 16px; border: 1px solid var(--card-border); overflow: hidden; margin-bottom: 4px; }
+.settings-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--settings-border); }
 .settings-row:last-child { border-bottom: none; }
-.settings-row-left { display: flex; align-items: center; gap: 14px; }
-.settings-row-icon { font-size: 1.3rem; }
-.settings-row-label { font-size: 0.95rem; font-weight: 600; color: var(--text); }
-.settings-row-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+.settings-row-left { display: flex; align-items: center; gap: 12px; }
+.settings-row-icon { font-size: 1.2rem; width: 32px; text-align: center; }
+.settings-row-label { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.settings-row-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 1px; }
+.settings-chevron { font-size: 1.3rem; color: var(--text-muted); }
+.settings-badge-green { background: #dcfce7; color: #15803d; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
 .settings-action-btn { background: #fee2e2; color: #b91c1c; border: none; border-radius: 10px; padding: 8px 16px; font-size: 0.85rem; font-weight: 700; font-family: inherit; cursor: pointer; }
 
 /* ── Toggle Switch ── */

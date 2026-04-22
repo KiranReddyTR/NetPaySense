@@ -47,55 +47,131 @@
       </div>
     </div>
 
-    <!-- Settings Panel -->
-    <div class="settings-panel hidden" id="settings-panel">
-      <div class="settings-header">
-        <span class="settings-title">⚙️ Settings</span>
-        <button class="settings-close" onclick="closeSettings()">✕</button>
-      </div>
-      <div class="settings-body">
-        <div class="settings-row">
-          <div class="settings-row-left">
-            <span class="settings-row-icon">🌙</span>
-            <div>
-              <p class="settings-row-label">Dark Mode</p>
-              <p class="settings-row-sub">Switch between light and dark</p>
+    <!-- Settings Panel (full slide-in) -->
+    <div class="settings-overlay hidden" id="settings-panel" onclick="closeSettingsOverlay(event)">
+      <div class="settings-drawer">
+        <!-- Header -->
+        <div class="settings-header">
+          <span class="settings-title">Settings</span>
+          <button class="settings-close" onclick="closeSettings()">✕</button>
+        </div>
+
+        <div class="settings-scroll">
+          <!-- Profile Card -->
+          <div class="settings-profile-card">
+            <div class="settings-avatar">👤</div>
+            <div class="settings-profile-info">
+              <p class="settings-profile-name">My Profile</p>
+              <p class="settings-profile-sub">NetPaySense User</p>
+            </div>
+            <button class="settings-edit-btn" onclick="editProfile()">Edit</button>
+          </div>
+
+          <!-- Appearance -->
+          <p class="settings-section-label">Appearance</p>
+          <div class="settings-group">
+            <div class="settings-row">
+              <div class="settings-row-left">
+                <span class="settings-row-icon">🌙</span>
+                <div>
+                  <p class="settings-row-label">Dark Mode</p>
+                  <p class="settings-row-sub">Switch between light and dark</p>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode(this.checked)" />
+                <span class="toggle-slider"></span>
+              </label>
             </div>
           </div>
-          <label class="toggle-switch">
-            <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode(this.checked)" />
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        <div class="settings-row">
-          <div class="settings-row-left">
-            <span class="settings-row-icon">🔔</span>
-            <div>
-              <p class="settings-row-label">Notifications</p>
-              <p class="settings-row-sub">Payment risk alerts</p>
+
+          <!-- Notifications -->
+          <p class="settings-section-label">Notifications</p>
+          <div class="settings-group">
+            <div class="settings-row">
+              <div class="settings-row-left">
+                <span class="settings-row-icon">🔔</span>
+                <div>
+                  <p class="settings-row-label">Payment Risk Alerts</p>
+                  <p class="settings-row-sub">Get notified on high risk</p>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="notif-toggle" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-left">
+                <span class="settings-row-icon">📳</span>
+                <div>
+                  <p class="settings-row-label">Vibration</p>
+                  <p class="settings-row-sub">Haptic feedback on actions</p>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="vibration-toggle" checked />
+                <span class="toggle-slider"></span>
+              </label>
             </div>
           </div>
-          <label class="toggle-switch">
-            <input type="checkbox" id="notif-toggle" />
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        <div class="settings-row">
-          <div class="settings-row-left">
-            <span class="settings-row-icon">🗑️</span>
-            <div>
-              <p class="settings-row-label">Clear History</p>
-              <p class="settings-row-sub">Remove all recent checks</p>
+
+          <!-- Data & Privacy -->
+          <p class="settings-section-label">Data & Privacy</p>
+          <div class="settings-group">
+            <div class="settings-row" onclick="clearHistory()" style="cursor:pointer">
+              <div class="settings-row-left">
+                <span class="settings-row-icon">🗑️</span>
+                <div>
+                  <p class="settings-row-label">Clear Search History</p>
+                  <p class="settings-row-sub">Remove all recent checks</p>
+                </div>
+              </div>
+              <span class="settings-chevron">›</span>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-left">
+                <span class="settings-row-icon">🔒</span>
+                <div>
+                  <p class="settings-row-label">Privacy</p>
+                  <p class="settings-row-sub">All data stays on your device</p>
+                </div>
+              </div>
+              <span class="settings-badge-green">Local</span>
             </div>
           </div>
-          <button class="settings-action-btn" onclick="clearHistory()">Clear</button>
-        </div>
-        <div class="settings-row">
-          <div class="settings-row-left">
-            <span class="settings-row-icon">ℹ️</span>
-            <div>
-              <p class="settings-row-label">Version</p>
-              <p class="settings-row-sub">NetPaySense v2.0</p>
+
+          <!-- About -->
+          <p class="settings-section-label">About</p>
+          <div class="settings-group">
+            <div class="settings-row">
+              <div class="settings-row-left">
+                <span class="settings-row-icon">📱</span>
+                <div>
+                  <p class="settings-row-label">App Version</p>
+                  <p class="settings-row-sub">NetPaySense v2.0</p>
+                </div>
+              </div>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-left">
+                <span class="settings-row-icon">⭐</span>
+                <div>
+                  <p class="settings-row-label">Rate the App</p>
+                  <p class="settings-row-sub">Tell us what you think</p>
+                </div>
+              </div>
+              <span class="settings-chevron">›</span>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-left">
+                <span class="settings-row-icon">📧</span>
+                <div>
+                  <p class="settings-row-label">Contact Support</p>
+                  <p class="settings-row-sub">Get help or report a bug</p>
+                </div>
+              </div>
+              <span class="settings-chevron">›</span>
             </div>
           </div>
         </div>

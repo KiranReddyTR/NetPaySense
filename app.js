@@ -45,6 +45,13 @@ function openSettings() {
 function closeSettings() {
   document.getElementById('settings-panel').classList.add('hidden');
 }
+function closeSettingsOverlay(e) {
+  if (e.target === document.getElementById('settings-panel')) closeSettings();
+}
+function editProfile() {
+  const name = prompt('Enter your name:', 'NetPaySense User');
+  if (name) document.querySelector('.settings-profile-name').textContent = name;
+}
 function clearHistory() {
   recents = [];
   localStorage.removeItem('nps_recents');
