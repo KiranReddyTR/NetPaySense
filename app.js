@@ -341,6 +341,12 @@ function resetApp() {
   document.querySelectorAll('.fb-chip').forEach(c => c.classList.remove('selected'));
   document.querySelectorAll('.fb-star').forEach(s => s.classList.remove('active'));
 
+  // Reset bank status in results
+  const rbs = document.getElementById('results-bank-select');
+  if (rbs) rbs.value = '';
+  const rbsContainer = document.getElementById('results-bank-status');
+  if (rbsContainer) rbsContainer.classList.add('hidden');
+
   goStep(1);
 }
 
@@ -540,4 +546,30 @@ function showBankStatus() {
   card.classList.remove('hidden');
   void card.offsetWidth;
   card.classList.add('fade-in');
+}
+
+function showResultsBankStatus() {
+  const key = document.getElementById('results-bank-select').value;
+  const container = document.getElementById('results-bank-status');
+  if (!key) { container.classList.add('hidden'); return; }
+
+  const bank = BANK_DATA[key];
+  document.getElementById('results-bank-title').textContent = `${bank.name} UPI Server Status`;
+
+  document.getElementById('results-bank-rows').innerHTML = bank.rows.map(r => {
+    const isOk = r.status === 'Online' || r.status === 'Available' || r.status === 'Active';
+    return `<div class="bank-status-row">
+      <span class="bank-row-icon">${isOk ? '✅' : '⚠️'}</span>
+      <span class="bank-row-label">${r.label}:</span>
+      <span class="bank-row-val ${isOk ? 'bank-row-ok' : 'bank-row-warn'}">${r.status}</span>
+    </div>`;
+  }).join('');
+
+  const overall = document.getElementById('results-bank-overall');
+  overall.textContent = `Status: ${bank.overall}`;
+  overall.className = `bank-overall-status ${bank.ok ? 'ok' : 'warn'}`;
+
+  container.classList.remove('hidden');
+  void container.offsetWidth;
+  container.classList.add('fade-in');
 }
