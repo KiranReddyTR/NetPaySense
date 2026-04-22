@@ -327,14 +327,15 @@ body {
 
 .settings-section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); padding: 8px 4px 4px; }
 .settings-group { background: var(--card-bg); border-radius: 16px; border: 1px solid var(--card-border); overflow: hidden; margin-bottom: 4px; }
-.settings-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--settings-border); }
+.settings-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--settings-border); gap: 12px; }
 .settings-row:last-child { border-bottom: none; }
-.settings-row-left { display: flex; align-items: center; gap: 12px; }
-.settings-row-icon { font-size: 1.2rem; width: 32px; text-align: center; }
-.settings-row-label { font-size: 0.9rem; font-weight: 600; color: var(--text); }
-.settings-row-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 1px; }
-.settings-chevron { font-size: 1.3rem; color: var(--text-muted); }
-.settings-badge-green { background: #dcfce7; color: #15803d; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+.settings-row-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.settings-row-icon { font-size: 1.2rem; width: 32px; text-align: center; flex-shrink: 0; }
+.settings-row-label { font-size: 0.9rem; font-weight: 600; color: var(--text); white-space: normal; word-break: break-word; }
+.settings-row-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 1px; white-space: normal; word-break: break-word; }
+.settings-chevron { font-size: 1.3rem; color: var(--text-muted); flex-shrink: 0; }
+.settings-badge-green { background: #dcfce7; color: #15803d; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
+.toggle-switch { flex-shrink: 0; }
 .settings-action-btn { background: #fee2e2; color: #b91c1c; border: none; border-radius: 10px; padding: 8px 16px; font-size: 0.85rem; font-weight: 700; font-family: inherit; cursor: pointer; }
 
 /* ── Toggle Switch ── */
