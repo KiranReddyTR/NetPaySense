@@ -20,7 +20,10 @@ function initOnboarding() {
 }
 
 let obIndex = 0;
-function obNext() {
+function obSkip() {
+  document.getElementById('onboarding').classList.add('hidden');
+  localStorage.setItem('nps_onboarded', '1');
+}
   const slides = document.querySelectorAll('.ob-slide');
   const dots = document.querySelectorAll('.ob-dot');
   slides[obIndex].classList.remove('active');

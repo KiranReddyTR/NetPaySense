@@ -307,6 +307,7 @@ body {
 .ob-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--skeleton-base); transition: background 0.3s, width 0.3s; }
 .ob-dot.active { background: #2563eb; width: 22px; border-radius: 4px; }
 .ob-next-btn { width: 100%; }
+.ob-skip-btn { background: none; border: none; color: var(--text-muted); font-size: 0.85rem; font-family: inherit; cursor: pointer; margin-top: 10px; text-decoration: underline; }
 
 /* ── Settings Panel (full slide-in drawer) ── */
 .settings-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500; display: flex; justify-content: flex-end; }
