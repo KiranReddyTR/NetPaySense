@@ -265,22 +265,82 @@ function animateBars(count, tier) {
   });
 }
 
-function submitFeedback(choice) {
-  document.getElementById('feedback-btns').classList.add('hidden');
+let fbOutcome = null;
+let fbStar = 0;
+
+function selectOutcome(outcome) {
+  fbOutcome = outcome;
+  // Highlight selected button
+  document.querySelectorAll('.fb-outcome-btn').forEach(b => b.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+
+  // Show reason chips for failed/pending
+  const reasonSection = document.getElementById('fb-reason-section');
+  if (outcome === 'failed' || outcome === 'pending') {
+    reasonSection.classList.remove('hidden');
+  } else {
+    reasonSection.classList.add('hidden');
+    document.querySelectorAll('.fb-chip').forEach(c => c.classList.remove('selected'));
+  }
+  document.getElementById('fb-rating-section').classList.remove('hidden');
+}
+
+function selectChip(el) {
+  document.querySelectorAll('.fb-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function selectStar(n) {
+  fbStar = n;
+  document.querySelectorAll('.fb-star').forEach((s, i) => {
+    s.classList.toggle('active', i < n);
+  });
+}
+
+function submitFeedbackNew() {
+  if (!fbOutcome) return;
+
+  const tips = {
+    success: '🎉 Great! Glad it went through. Keep checking signal before big payments.',
+    failed:  '🙏 Sorry about that. Try switching to WiFi or moving to a better signal area.',
+    pending: '⏳ Pending payments usually resolve in 10–15 mins. Check your bank app.',
+  };
+
+  document.getElementById('feedback-main').classList.add('hidden');
   document.getElementById('back-from-5').classList.add('hidden');
-  const thanks = document.getElementById('feedback-thanks');
-  thanks.classList.remove('hidden');
-  document.getElementById('thanks-text').textContent = choice === 'yes'
-    ? '🎉 Great! Glad the payment went through successfully.'
-    : '🙏 Sorry to hear that. Try switching your SIM or moving to a better signal area.';
+
+  const icons = { success: '🎉', failed: '😔', pending: '⏳' };
+  document.getElementById('fb-thanks-icon').textContent = icons[fbOutcome];
+  document.getElementById('fb-thanks-title').textContent = fbStar ? `Thanks for the ${fbStar}★ rating!` : 'Thank you for your feedback!';
+  document.getElementById('fb-thanks-tip').textContent = tips[fbOutcome];
+
+  const card = document.getElementById('feedback-thanks-card');
+  card.classList.remove('hidden');
+  card.classList.add('fade-in');
+
+  // Reset state
+  fbOutcome = null; fbStar = 0;
+}
+
+function submitFeedback(choice) {
+  // legacy — kept for safety
 }
 
 function resetApp() {
   document.getElementById('loc-input').value = '';
-  document.getElementById('feedback-btns').classList.remove('hidden');
-  document.getElementById('feedback-thanks').classList.add('hidden');
   document.getElementById('back-from-5').classList.remove('hidden');
   currentSig = null;
+
+  // Reset feedback UI
+  document.getElementById('feedback-main').classList.remove('hidden');
+  document.getElementById('feedback-thanks-card').classList.add('hidden');
+  document.getElementById('fb-outcome-section').classList.remove('hidden');
+  document.getElementById('fb-reason-section').classList.add('hidden');
+  document.getElementById('fb-rating-section').classList.add('hidden');
+  document.querySelectorAll('.fb-outcome-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.fb-chip').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.fb-star').forEach(s => s.classList.remove('active'));
+
   goStep(1);
 }
 

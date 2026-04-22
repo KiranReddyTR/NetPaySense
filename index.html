@@ -283,18 +283,64 @@
       <!-- ── STEP 4: Feedback ── -->
       <div class="step-panel hidden" id="panel-4">
         <p class="step-label">Feedback</p>
-        <div class="card feedback-card">
-          <div class="feedback-icon">💬</div>
-          <p class="feedback-q">Was the payment successful?</p>
-          <div class="feedback-btns" id="feedback-btns">
-            <button class="fb-btn yes" onclick="submitFeedback('yes')">👍 Yes</button>
-            <button class="fb-btn no" onclick="submitFeedback('no')">👎 No</button>
+        <div class="card feedback-card" id="feedback-main">
+
+          <!-- Step 1: Outcome -->
+          <div id="fb-outcome-section">
+            <p class="feedback-q">How did your payment go?</p>
+            <div class="fb-outcome-grid">
+              <button class="fb-outcome-btn" onclick="selectOutcome('success')">
+                <span class="fb-outcome-icon">✅</span>
+                <span>Successful</span>
+              </button>
+              <button class="fb-outcome-btn" onclick="selectOutcome('failed')">
+                <span class="fb-outcome-icon">❌</span>
+                <span>Failed</span>
+              </button>
+              <button class="fb-outcome-btn" onclick="selectOutcome('pending')">
+                <span class="fb-outcome-icon">⏳</span>
+                <span>Pending</span>
+              </button>
+            </div>
           </div>
-          <div class="feedback-thanks hidden" id="feedback-thanks">
-            <p class="thanks-text" id="thanks-text">—</p>
-            <button class="next-btn reset-btn" onclick="resetApp()">🔄 Check Another Location</button>
+
+          <!-- Step 2: Reason chips (shown only for failed/pending) -->
+          <div id="fb-reason-section" class="hidden">
+            <div class="divider" style="margin:16px 0"></div>
+            <p class="feedback-q" style="font-size:0.9rem">What went wrong?</p>
+            <div class="fb-chips" id="fb-chips">
+              <button class="fb-chip" onclick="selectChip(this)">Poor Signal</button>
+              <button class="fb-chip" onclick="selectChip(this)">Timeout</button>
+              <button class="fb-chip" onclick="selectChip(this)">Bank Server Down</button>
+              <button class="fb-chip" onclick="selectChip(this)">Wrong UPI ID</button>
+              <button class="fb-chip" onclick="selectChip(this)">Other</button>
+            </div>
           </div>
+
+          <!-- Step 3: Star rating -->
+          <div id="fb-rating-section" class="hidden">
+            <div class="divider" style="margin:16px 0"></div>
+            <p class="feedback-q" style="font-size:0.9rem">Rate your experience</p>
+            <div class="fb-stars" id="fb-stars">
+              <span class="fb-star" onclick="selectStar(1)">★</span>
+              <span class="fb-star" onclick="selectStar(2)">★</span>
+              <span class="fb-star" onclick="selectStar(3)">★</span>
+              <span class="fb-star" onclick="selectStar(4)">★</span>
+              <span class="fb-star" onclick="selectStar(5)">★</span>
+            </div>
+            <button class="next-btn" id="fb-submit-btn" onclick="submitFeedbackNew()" style="margin-top:18px">Submit Feedback</button>
+          </div>
+
         </div>
+
+        <!-- Thank you screen -->
+        <div class="card feedback-card hidden" id="feedback-thanks-card">
+          <div class="fb-thanks-icon" id="fb-thanks-icon">🎉</div>
+          <p class="feedback-q" id="fb-thanks-title">Thank you!</p>
+          <p class="fb-thanks-tip" id="fb-thanks-tip">—</p>
+          <button class="next-btn reset-btn" onclick="resetApp()" style="margin-top:18px">🔄 Check Another Location</button>
+        </div>
+
         <div class="nav-btns" id="back-from-5">
           <button class="back-btn" onclick="goStep(3)">← Back</button>
         </div>
