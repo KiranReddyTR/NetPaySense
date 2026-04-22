@@ -56,8 +56,17 @@ function editProfile() {
   const name = prompt('Enter your name:', 'NetPaySense User');
   if (name) document.querySelector('.settings-profile-name').textContent = name;
 }
-function clearHistory() {
-  recents = [];
+function showIntro() {
+  obIndex = 0;
+  document.querySelectorAll('.ob-slide').forEach((s, i) => s.classList.toggle('active', i === 0));
+  document.querySelectorAll('.ob-dot').forEach((d, i) => d.classList.toggle('active', i === 0));
+  document.getElementById('ob-next-btn').textContent = 'Next →';
+  localStorage.removeItem('nps_onboarded');
+  document.getElementById('onboarding').classList.remove('hidden');
+  closeSettings();
+}
+
+function clearHistory() {  recents = [];
   localStorage.removeItem('nps_recents');
   renderRecents();
   closeSettings();
