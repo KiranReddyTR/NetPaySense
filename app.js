@@ -181,11 +181,6 @@ function runAnalyzing(raw, btn) {
 }
 
 function populateSignal(sig) {
-  const qEl = document.getElementById('sig-quality');
-  qEl.textContent = sig.label;
-  qEl.className = `signal-quality ${sig.tier}`;
-  document.getElementById('sig-dbm').textContent = `${sig.dbm} dBm (${sig.type})`;
-
   const upiVal = document.getElementById('upi-value');
   upiVal.textContent = sig.upi;
   upiVal.className = `upi-value ${sig.tier}`;
@@ -251,7 +246,6 @@ function goStep(step) {
   panel.classList.add('fade-in');
 
   if (step === 2) resetAnalyzingSteps();
-  if (step === 3 && currentSig) animateBars(currentSig.bars, currentSig.tier);
   document.querySelector('.main').scrollTop = 0;
 }
 
