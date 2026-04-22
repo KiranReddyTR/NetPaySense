@@ -388,12 +388,6 @@
           <p class="welcome-sub">Check your network signal strength and UPI payment reliability for any location.</p>
         </div>
 
-        <!-- Empty state illustration -->
-        <div class="empty-state" id="empty-state">
-          <div class="empty-illustration">🔍</div>
-          <p class="empty-text">Enter a location above to get started</p>
-        </div>
-
         <div class="search-card">
           <span class="search-icon">📍</span>
           <input id="loc-input" type="text" placeholder="Enter location (e.g. Koramangala…)" />
@@ -403,6 +397,12 @@
         <div id="recents-section" class="hidden">
           <p class="section-label">🕐 Recently Checked</p>
           <div class="recents-list" id="recents-list"></div>
+        </div>
+
+        <!-- Empty state — shown when no recents -->
+        <div class="empty-state" id="empty-state">
+          <div class="empty-illustration">🔍</div>
+          <p class="empty-text">Enter a location to get started</p>
         </div>
       </div>
 
