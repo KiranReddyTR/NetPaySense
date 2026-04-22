@@ -115,7 +115,8 @@ body {
 .skeleton-line.w40 { width: 40%; }
 .skeleton-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 4px; }
 .skeleton-box { height: 52px; border-radius: 12px; background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-shine) 50%, var(--skeleton-base) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
-.skeleton-preview { width: 100%; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.skeleton-preview { width: 100%; max-width: 340px; display: flex; flex-direction: column; gap: 10px; margin: 0 auto 20px; }
+.skeleton-card { background: var(--card-bg); border-radius: 18px; padding: 18px; border: 1px solid var(--card-border); display: flex; flex-direction: column; gap: 10px; width: 100%; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
 /* ── Search ── */
@@ -142,7 +143,7 @@ body {
 .recent-badge.poor { background: #fee2e2; color: #b91c1c; }
 
 /* ── Analyzing ── */
-.analyzing-block { display: flex; flex-direction: column; align-items: center; padding: 32px 16px; gap: 0; }
+.analyzing-block { display: flex; flex-direction: column; align-items: center; padding: 32px 16px; gap: 0; width: 100%; }
 .analyzing-title { font-size: 1.2rem; font-weight: 800; color: var(--text-heading); margin-bottom: 6px; text-align: center; }
 .analyzing-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 28px; text-align: center; }
 .spinner-wrap { margin-bottom: 20px; }
