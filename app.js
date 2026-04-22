@@ -24,6 +24,7 @@ function obSkip() {
   document.getElementById('onboarding').classList.add('hidden');
   localStorage.setItem('nps_onboarded', '1');
 }
+function obNext() {
   const slides = document.querySelectorAll('.ob-slide');
   const dots = document.querySelectorAll('.ob-dot');
   slides[obIndex].classList.remove('active');
